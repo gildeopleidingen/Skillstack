@@ -50,14 +50,14 @@ const codingLanguages = [
 ];
 
 // language selector
-function getMonacoLanguage(lang)
+function getMonacoLanguage(lang: string)
 {
         let language = {id:"PLAINTEXT", name: "plaintext"};
         for(let i = 0; i < codingLanguages.length; i++) {
-                let cl = codingLanguages[i];
+                const cl = codingLanguages[i];
                 if (cl.id == lang) {
                         language = cl;
-                        continue;
+                        break;
                 }
         }
         return language;
@@ -66,19 +66,22 @@ function getMonacoLanguage(lang)
 
 // @TODO save code? or do something
 // Maybe in browser session
-function saveCode(code) 
+function saveCode(code?: string)
 {
         console.debug('code Editor code: ', code);
 }
 
 
 // Main function
-export default function CodeEditor({exerciseId, code = null, }) {
+export default function CodeEditor({exerciseId, code = "", }: {
+        exerciseId: number;
+        code?: string;
+}) {
 
         // We pass on the exerciseId (props)?
         console.debug('components/Editor - CodeEditor - Exercise ID#: ', exerciseId);
 
-        let lang = getMonacoLanguage("C++").id;
+        const lang = getMonacoLanguage("C++").id;
         console.debug('components/Editor - CodeEditor - Language selected: ', lang);
 
 	return (
@@ -91,7 +94,7 @@ export default function CodeEditor({exerciseId, code = null, }) {
 		          language={getMonacoLanguage("javascript").id}
                           // Code should be here
 		          value={code}
-		          onChange={saveCode}
+                          onChange={(s) => saveCode(s)}
 		          theme="vs-dark"
 		          options={{
                                 minimap: { enabled: false },

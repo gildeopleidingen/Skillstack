@@ -1,0 +1,51 @@
+enum ExerciseCategoryType {
+        python
+        cpp          @map("c++")
+        nodejs
+        typeScript
+        javaScript
+        css
+        less
+        scss
+        json
+        html
+        xml
+        php
+        csharp       @map("c#")
+        razor
+        markdown
+        java
+        vb
+        coffeescript
+        batch
+        pug
+        fsharp       @map("f#")
+        lua
+        powershell
+        ruby
+        r
+        objectivec   @map("objective-c")
+}
+
+model assignment {
+        uuid                   String       @id @default(uuid(7)) @db.Uuid
+        title                  String
+        description            String
+        input                  String?
+        expected_output        String?
+        max_score              Int?
+        assignment_category_id Int
+        sub_id                 Int?
+        submissions            submission[]
+        version                String?
+
+        category assignment_category @relation(fields: [assignment_category_id], references: [id])
+}
+
+model assignment_category {
+        id          Int                  @id @default(autoincrement())
+        name        String               @unique
+        icon        String
+        type        ExerciseCategoryType
+        assignments assignment[]
+}

@@ -1,11 +1,11 @@
 
-import { db, connectDatabase } from "@/prisma/db";
+import { db, connectDB } from "@/lib/db";
 
 export default async function user() {
         
-        await connectDatabase();
+        await connectDB();
 
-        const users = await db.User.findMany();
+        const users = await db.user.findMany();
         
         return (
                 <main>

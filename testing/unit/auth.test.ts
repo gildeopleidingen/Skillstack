@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+
 // Some env
 const validEnv = {
         AUTH_SECRET: "test-secret",
@@ -25,7 +26,7 @@ describe("auth configuration", () => {
         it("loads when all required environment variables exist", async () => {
                 setValidEnv();
 
-    const { env, authConfig } = await import("../../src/auth.config");
+                const { env, authConfig } = await import("../../src/auth.config");
 
                 expect(env).toEqual(validEnv);
                 expect(authConfig.session).toEqual({
@@ -41,10 +42,10 @@ describe("auth configuration", () => {
                         setValidEnv();
                         delete process.env[missingKey];
 
-    await expect(import("../../src/auth.config")).rejects.toThrow(
-      `Missing required environment variable: ${missingKey}`,
-    );
-  });
+                await expect(import("../../src/auth.config")).rejects.toThrow(
+                `Missing required environment variable: ${missingKey}`,
+                );
+        });
 
         it.each(["AUTH_SECRET", "AUTH_GITHUB_ID", "AUTH_GITHUB_SECRET"])(
                 "throws when %s is empty",
@@ -61,20 +62,20 @@ describe("auth configuration", () => {
                 setValidEnv();
 
     const { authConfig } = await import("../../src/auth.config");
-
+         const userModel = await import('../../generated/prisma/models/user');
                 const token = {};
 
                 const result = await authConfig.callbacks!.jwt!({
                         token,
-                        user: undefined,
+                        user: userModel,
                         account: undefined,
                         profile: {
-                                id: 12345,
+                                id: "12345",
                         },
                         trigger: "signIn",
                 });
 
-                expect(result.id).toBe("12345");
+                expect(result?.id).toBe("12345");
         });
 
         it("copies the JWT id into the session user", async () => {

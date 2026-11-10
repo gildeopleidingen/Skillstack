@@ -1,6 +1,6 @@
 import GitHub from "next-auth/providers/github";
 import type { NextAuthConfig } from "next-auth";
-import { db, connectDatabase } from "./prisma/db";
+import { db, connectDB } from "@/lib/db";
     
 const requiredEnv = [
         "AUTH_SECRET",
@@ -41,31 +41,31 @@ export const authConfig: NextAuthConfig = {
         ],
 
         callbacks: {
-                async signIn({ profile }) {
+                async signIn({ profile  }) {
                         // Check provider
                         //if (account?.provider !== 'github' ) return false;
                         console.log('auth.config.ts - signIn - profile: ', profile);
 
-                        const githubId = Number(profile.id);
+                        const githubId = Number(profile?.id);
                         console.log('auth.config.ts - signIn - githubId: ', githubId)
                         // Upsert user into DB
 
-                        await connectDatabase();
+                        await connectDB();
 
-                        await db.User.upsert({
+                        await db.user.upsert({
                                 where: {github_id:githubId},
                                 create: { 
                                         github_id: githubId,
-                                        github_username: String(profile.login),
-                                        full_name: profile.name ? String(profile.name) : null,
-                                        email: profile.email ? String(profile.email) : null,
-                                        avatar_url: profile.avatar_url ? String(profile.avatar_url) : null,
+                                        github_username: String(profile?.login),
+                                        full_name: profile?.name ? String(profile?.name) : null,
+                                        email: profile?.email ? String(profile?.email) : null,
+                                        avatar_url: profile?.avatar_url ? String(profile?.avatar_url) : null,
                                       },
                                       update: {
-                                        github_username: String(profile.login),
-                                        full_name: profile.name ? String(profile.name) : null,
-                                        email: profile.email ? String(profile.email) : null,
-                                        avatar_url: profile.avatar_url ? String(profile.avatar_url) : null,
+                                        github_username: String(profile?.login),
+                                        full_name: profile?.name ? String(profile?.name) : null,
+                                        email: profile?.email ? String(profile?.email) : null,
+                                        avatar_url: profile?.avatar_url ? String(profile?.avatar_url) : null,
                                       },
                         });
 
@@ -74,7 +74,7 @@ export const authConfig: NextAuthConfig = {
 
                 async jwt({ token, profile }) {
                         if (profile?.id) {
-                                token.id = String(profile.id);
+                                token.id = String(profile?.id);
                         }
 
                         return token;

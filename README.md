@@ -27,10 +27,15 @@ You can create the database with the command:
 npx prisma db push
 ```
 
+Generate Prisma client
+```bash
+prisma generate
+```
+
 To Seed the database with test rows:
 
 ```bash
-npm run seed
+prisma db seed
 ```
 To create a new migration (after changing .prisma files in prisma folder)
 
@@ -117,12 +122,6 @@ To add extra features use for example:
 npx shadcn@latest add dropdown-menu
 
 npx shadcn@latest add sonner    
-```
-
-## TDD (tests)
-> Start NextJS local
-```bash
-npm run dev
 ```
 
 ## TDD  (tests)

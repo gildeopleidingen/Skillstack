@@ -17,7 +17,7 @@ import Logo from "./logo"
 
 const links = [
   { href: "/dashboard/reports", label: "Dashboard" },
-  { href: "/assessment", label: "Assessments" },
+  { href: "/assignment", label: "Assignments" },
   { href: "/user", label: "Users" },
   { href: "/roadmap", label: "Roadmap" },
 ]

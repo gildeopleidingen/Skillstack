@@ -1,0 +1,16 @@
+model submission {
+        uuid            String     @id @default(uuid(7)) @db.Uuid
+        user_id         Int
+        user            user       @relation(fields: [user_id], references: [github_id])
+        assignment_uuid String     @db.Uuid
+        assignment      assignment @relation(fields: [assignment_uuid], references: [uuid])
+        submitted_code  String?
+        result          String?
+        score           Int?
+        submitted_at    DateTime?   @default(now()) @db.Timestamp(0)
+        graded_at       DateTime?   @db.Timestamp(0)
+        graded          Int?        @default(0)
+        compile_res     String?
+        test_res        String?
+        test_error      String?
+}
