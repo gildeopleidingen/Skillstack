@@ -3,7 +3,9 @@ import { redirect } from "next/navigation";
 
 import Roadmap from "@/components/roadmap";
 import AssignmentProfile from "@/components/assignment-profile";
-import CodeEditor from "@/components/editor"
+import CodeEditor from "@/components/editor";
+import {LanguageSelector} from "@/components/language-selector";
+import {languages} from "@/lib/languages";
 
 export default async function Home() {
   const session = await auth()
@@ -25,6 +27,8 @@ export default async function Home() {
       <Roadmap />
       <AssignmentProfile />
       <CodeEditor exerciseId={5} code="let c = 10;" />
+        
+      <LanguageSelector items={languages}  />
     </section>
   )
 }

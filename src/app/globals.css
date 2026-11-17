@@ -128,3 +128,8 @@
     @apply font-sans;
         }
 }
+
+.carousel__photo {
+        float: left;
+        margin: 10px;
+}
