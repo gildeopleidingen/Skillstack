@@ -7,12 +7,15 @@ type Props = {
         items: ReadonlyArray<Language>;
 }
 
-function setEventListeners(icons) {
+function clickEventlistener(icon) {
+        console.info("language-selectore component clickEventlistener icon: ", icon);
+        // get clicked icon 
+        let iconKey = icon.
 
 }
 
 function initCarousel(items, icons) {
-        setEventListeners(icons);
+        // setEventListeners(icons);
 }
 
 /**
@@ -40,7 +43,8 @@ export function LanguageSelector({
                                                 key={lang.key}
                                                 className="carousel__photo"
                                                 src={`${lang.icon}`}
-                                                alt={lang.label}
+                                                alt={lang.label}    
+                                                onClick={clickEventlistener}                                            
                                                 width={20}
                                         />
 
