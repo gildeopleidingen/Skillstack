@@ -9,8 +9,11 @@ type Props = {
 
 function clickEventlistener(icon) {
         console.info("language-selectore component clickEventlistener icon: ", icon);
-        // get clicked icon 
-        let iconKey = icon.
+    
+        // Get language from button clicked using dataset
+        let key = icon.target.dataset.lang;
+        console.info("language-selectore component clickEventlistener key: ", key);
+        
 
 }
 
@@ -41,6 +44,7 @@ export function LanguageSelector({
                                         <span className="peer-checked:bg-green-200 peer-checked:text-white px-2 py-0 rounded-full transition">
                                         <img
                                                 key={lang.key}
+                                                data-lang={lang.key}
                                                 className="carousel__photo"
                                                 src={`${lang.icon}`}
                                                 alt={lang.label}    
