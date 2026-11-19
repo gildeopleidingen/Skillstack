@@ -15,27 +15,29 @@ Copy the .env_example to .env and change configuration.
 
 Install dependencies by using:
 ```bash
-npm install
+npm install --force
 ```
 
 ### Database
 
 After creating the .env file with the right database URL.
-You can create the database with the command:
 
+
+Generate Prisma client
+```bash
+npx prisma generate
+```
+You can create the database with the command:
 ```bash
 npx prisma db push
 ```
 
-Generate Prisma client
-```bash
-prisma generate
-```
+
 
 To Seed the database with test rows:
 
 ```bash
-prisma db seed
+ npx prisma db seed
 ```
 To create a new migration (after changing .prisma files in prisma folder)
 
@@ -53,6 +55,18 @@ To create the new migration and apply it:
 
 ```bash
 npx prisma migrate dev
+```
+#### Windows database postgresql installation
+
+```sql
+CREATE USER jafer WITH PASSWORD '**********';
+
+ CREATE DATABASE skillstack;
+
+ GRANT ALL PRIVILEGES ON DATABASE "skillstack" to jafer;
+
+ GRANT USAGE, CREATE ON SCHEMA public TO jafer;
+ ALTER USER jafer CREATEDB;
 ```
 
 #### Linux database postgresql installation

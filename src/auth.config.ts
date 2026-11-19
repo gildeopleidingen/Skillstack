@@ -57,15 +57,15 @@ export const authConfig: NextAuthConfig = {
                                 create: { 
                                         github_id: githubId,
                                         github_username: String(profile?.login),
-                                        full_name: profile?.name ? String(profile?.name) : null,
-                                        email: profile?.email ? String(profile?.email) : null,
-                                        avatar_url: profile?.avatar_url ? String(profile?.avatar_url) : null,
+                                        full_name: profile?.name ? String(profile?.name) : "",
+                                        email: profile?.email ? String(profile?.email) : "",
+                                        avatar_url: profile?.avatar_url ? String(profile?.avatar_url) : "",
                                       },
                                       update: {
                                         github_username: String(profile?.login),
-                                        full_name: profile?.name ? String(profile?.name) : null,
-                                        email: profile?.email ? String(profile?.email) : null,
-                                        avatar_url: profile?.avatar_url ? String(profile?.avatar_url) : null,
+                                        full_name: profile?.name ? String(profile?.name) : "",
+                                        email: profile?.email ? String(profile?.email) : "",
+                                        avatar_url: profile?.avatar_url ? String(profile?.avatar_url) : "",
                                       },
                         });
 
