@@ -8,4 +8,6 @@ model user {
         location        String?
         submissions     submission[]
         createdAt       DateTime     @default(now()) @db.Timestamptz(6)
+
+        assignment_categories user_assignment_category[]
 }

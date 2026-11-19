@@ -48,4 +48,15 @@ model assignment_category {
         icon        String
         type        ExerciseCategoryType
         assignments assignment[]
+         users       user_assignment_category[]
+}
+
+model user_assignment_category {
+        user_github_id          Int
+        assignment_category_id  Int
+
+        user                 user               @relation(fields: [user_github_id], references: [github_id])
+        assignment_category  assignment_category @relation(fields: [assignment_category_id], references: [id])
+
+        @@id([user_github_id, assignment_category_id])
 }
