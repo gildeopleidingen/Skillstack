@@ -10,9 +10,13 @@ import {languages} from "@/lib/languages";
 export default async function Home() {
   const session = await auth()
 
+  // TODO do this in middleware??? or howto do this every request??
   if (!session?.user) {
     redirect("/login")
   }
+
+  // TODO from DB, for this user
+  const selected = ["javascript", "c++"];  
 
   return (
     <section className="mx-auto w-full max-w-3xl bg-white p-6 dark:bg-black">
@@ -28,7 +32,8 @@ export default async function Home() {
       <AssignmentProfile />
       <CodeEditor exerciseId={5} code="let c = 10;" />
         
-      <LanguageSelector items={languages}  />
+   
+      <LanguageSelector items={languages} selected={selected} />
     </section>
   )
 }
