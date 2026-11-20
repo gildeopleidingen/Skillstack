@@ -58,5 +58,5 @@ model user_assignment_category {
         user                 user               @relation(fields: [user_github_id], references: [github_id])
         assignment_category  assignment_category @relation(fields: [assignment_category_id], references: [id])
 
-        @@id([user_github_id, assignment_category_id])
+        //@@id([user_github_id, assignment_category_id])
 }
