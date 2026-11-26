@@ -1,0 +1,26 @@
+model quest {
+        uuid String @id @default(uuid(7)) @db.Uuid
+        name String
+
+        tracks track[]
+}
+
+model track {
+        uuid       String @id @default(uuid(7)) @db.Uuid
+        order      Int
+        name       String
+        quest_uuid String @db.Uuid
+        quest      quest  @relation(fields: [quest_uuid], references: [uuid])
+        paths      path[]
+}
+
+model path {
+        uuid  String @id @default(uuid(7)) @db.Uuid
+        order Int
+
+        track_uuid String @db.Uuid
+        track      track  @relation(fields: [track_uuid], references: [uuid])
+
+        assignment_uuid String     @db.Uuid
+        assignment      assignment @relation(fields: [assignment_uuid], references: [uuid])
+}
