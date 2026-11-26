@@ -4,13 +4,17 @@ export default async function user() {
         //await connectDB();
 
         //const users = await db.user.findMany();
-        const response = await fetch(`${process.env.API_URL}/users`, {
+        const response = await fetch(`${process.env.API_URL}/user`, {
                 cache: "no-store", // fetch fresh data on each request
         });
+
+        console.log(response);
 
         if (!response.ok) {
                 throw new Error("Failed to fetch users");
         }
+
+        const users = await response.json();
 
         return (
                 <main>
