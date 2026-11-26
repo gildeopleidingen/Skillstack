@@ -8,7 +8,7 @@ export default async function user() {
                 cache: "no-store", // fetch fresh data on each request
         });
 
-        console.log(response);
+        console.log('app/(site)/user/page.tsx -- response: ', response);
 
         if (!response.ok) {
                 throw new Error("Failed to fetch users");
