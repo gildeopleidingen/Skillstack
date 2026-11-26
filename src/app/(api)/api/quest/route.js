@@ -1,4 +1,4 @@
-// learningpath
+// quest
 import 'server-only';
 
 // authentication
@@ -6,7 +6,7 @@ import {auth} from "@/auth";
 // database
 import {pool} from "@/lib/pool";
 
-// Get all the learningpath
+// Get all the quest
 export async function GET() {
   try {
         // Get user from session and hist hithub_id
@@ -15,14 +15,14 @@ export async function GET() {
 
         // Select only fields that are safe to return.
         const result = await pool.query(
-                `SELECT * from learningpath;`
+                `SELECT * from quest;`
         );
 
         return Response.json(result.rows);
   } catch (error) {
-    console.error("Failed to fetch learningpath:", error);
+    console.error("Failed to fetch quest:", error);
     return Response.json(
-      { error: "Could not fetch learningpath" },
+      { error: "Could not fetch quest" },
       { status: 500 }
     );
   }
